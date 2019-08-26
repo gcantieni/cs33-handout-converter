@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo $(sed -f './sed-sections' $1) > project.html
+sed -r "s/^(.{0})(.{6})/\1/" project.html > handout.html
+rm project.html
+echo "</div>" >> handout.html

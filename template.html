@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head> 
+        <meta charset="utf-8" />
+        <script src="jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="template.css"> 
+    </head>
+        
+    <body>
+        <h1>Test Project</h1>
+        <button class="collapse"> Lorem Ipsum </button>
+          
+        <div class='section' id= "1">
+            <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin neque quis posuere aliquet. Vestibulum rutrum eros sit amet diam porttitor, vitae interdum nulla rhoncus. Ut euismod nec lacus a porta. Fusce nec molestie turpis. Praesent vel blandit eros. Vivamus congue lorem in metus sodales, sed vestibulum enim pharetra. Cras et congue nulla. Nullam dignissim, lacus sit amet feugiat malesuada, mauris odio ullamcorper ligula, hendrerit volutpat ipsum eros ut nibh. In a laoreet sem. In consequat tempor lacus ut euismod. Quisque eget diam ac lectus efficitur lobortis. Quisque iaculis libero arcu, in fringilla lectus ultricies id. Quisque consequat, turpis at tempor mattis, enim velit volutpat libero, ut pharetra libero ligula id velit.
+            </p>
+        </div>
+        <button class="collapse"> Lorem Ipsum </button>
+          
+        <div class='section' id= "2">
+            <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin neque quis posuere aliquet. Vestibulum rutrum eros sit amet diam porttitor, vitae interdum nulla rhoncus. Ut euismod nec lacus a porta. Fusce nec molestie turpis. Praesent vel blandit eros. Vivamus congue lorem in metus sodales, sed vestibulum enim pharetra. Cras et congue nulla. Nullam dignissim, lacus sit amet feugiat malesuada, mauris odio ullamcorper ligula, hendrerit volutpat ipsum eros ut nibh. In a laoreet sem. In consequat tempor lacus ut euismod. Quisque eget diam ac lectus efficitur lobortis. Quisque iaculis libero arcu, in fringilla lectus ultricies id. Quisque consequat, turpis at tempor mattis, enim velit volutpat libero, ut pharetra libero ligula id velit.
+            </p>
+        </div>
+        <button class="collapse"> Lorem Ipsum </button>
+        <div class='section' id= "2">
+            <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin neque quis posuere aliquet. Vestibulum rutrum eros sit amet diam porttitor, vitae interdum nulla rhoncus. Ut euismod nec lacus a porta. Fusce nec molestie turpis. Praesent vel blandit eros. Vivamus congue lorem in metus sodales, sed vestibulum enim pharetra. Cras et congue nulla. Nullam dignissim, lacus sit amet feugiat malesuada, mauris odio ullamcorper ligula, hendrerit volutpat ipsum eros ut nibh. In a laoreet sem. In consequat tempor lacus ut euismod. Quisque eget diam ac lectus efficitur lobortis. Quisque iaculis libero arcu, in fringilla lectus ultricies id. Quisque consequat, turpis at tempor mattis, enim velit volutpat libero, ut pharetra libero ligula id velit.
+            </p>
+        </div>
+    </body>
+    <script> 
+        function collapse(ele) {
+            console.log();
+            let content = $(ele); 
+            if (content.css('display') !== 'none') {
+                content.css('display', 'none');
+            } else {
+                content.css('display', 'block');
+            }
+        }
+        if ($("button.collapse").length > 0) { 
+            $('.collapse').click(function (event) {
+                console.log(event.target.nextElementSibling)
+                collapse(event.target.nextElementSibling);
+            });       
+        }
+    </script>
+</html>

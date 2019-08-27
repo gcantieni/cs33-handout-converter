@@ -8,11 +8,11 @@ Specify the input format and output format with --from and --to
 These can also be -f and -t.
 
 This utility only goes "one direction". That is, it goes from text towards more complicated
-html. This journey involves text --> markdown --> html --> pretty (foldable) html.
+html. This journey involves text --> markdown --> html --> foldable html.
 
 Thus these are valid:
 --from markdown --to html
---from html --to foldable
+--from text --to foldable
 
 While these are not:
 --from html --to markdown
@@ -93,4 +93,3 @@ elif [[ "$FROM" = "html" && "$TO" = "foldable" ]]; then
 else
     echo "Unrecognized pairing: to=${TO} from=${FROM}" >&2
 fi
-

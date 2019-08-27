@@ -3,31 +3,8 @@
 
 function usage {
     cat <<EOF
-usage: ./convert-handout --from [text|markdown] --to [markdown|html|foldable] file
-Specify the input format and output format with --from and --to
-These can also be -f and -t.
-
-This utility only goes "one direction". That is, it goes from text towards more complicated
-html. This journey involves text --> markdown --> html --> foldable html.
-
-Thus these are valid:
---from markdown --to html
---from text --to foldable
-
-While these are not:
---from html --to markdown
---from markdown --to text
+usage: ./convert-handout file.md
 EOF
-}
-
-function txt-to-md {
-    # Convert any lines starting with NUMBER to an h1
-    # Convert any lines tarting with NUMBER.NUMBER to h2
-    sed -e "s/^[0-9] /\# &/g" -e "s/^[0-9]\.[0-9]/\#\# &/g" $1
-}
-
-function md-to-html {
-    pandoc -f markdown_strict -t html $1
 }
 
 function add-foldable-sections {
@@ -42,54 +19,10 @@ function add-foldable-sections {
     echo -e "${doc:7}\n</div>"
 }
 
-# Parse arguments
-POSITIONAL=()
-while [[ $# -gt 0 ]]; do
-    key="$1"
-      case $key in
-	  -t|--to)
-	      TO="$2"
-	      shift
-	      shift
-	      ;;
-	  -f|--from)
-	      FROM="$2"
-	      shift
-	      shift
-	      ;;
-    
-	*)
-	    POSITIONAL+=("$1")
-	    shift
-	    ;;
-    esac
-done
-
-# restore positional parameters
-set -- "${POSITIONAL[@]}" 
-
 # Check usage
-if [[ ! -n "$1" || "$TO" = "" || "$FROM" = "" ]]; then
-    echo "TO=${TO}"
-    echo "FROM=${FROM}"
+if [[ ! -n "$1" ]]; then
     usage
     exit
 fi
 
-# Check validity of pairings
-
-if [[ "$FROM" = "text" && "$TO" = "markdown" ]]; then
-    txt-to-md $1
-elif [[ "$FROM" = "text" && "$TO" = "html" ]]; then
-    txt-to-md $1 | md-to-html
-elif [[ "$FROM" = "text" && "$TO" = "foldable" ]]; then
-    txt-to-md $1 | md-to-html | add-foldable-sections
-elif [[ "$FROM" = "markdown" && "$TO" = "html" ]]; then
-    md-to-html $1
-elif [[ "$FROM" = "markdown" && "$TO" = "foldable" ]]; then
-    md-to-html $1 | add-foldable-sections
-elif [[ "$FROM" = "html" && "$TO" = "foldable" ]]; then
-    add-foldable-sections $1
-else
-    echo "Unrecognized pairing: to=${TO} from=${FROM}" >&2
-fi
+add-foldable-sections $1

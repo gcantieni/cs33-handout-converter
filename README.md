@@ -1,21 +1,21 @@
 # cs33-handout-converter
-Convert 33 handouts (or others, for that matter) to various forms.
+Convert cs33 handouts from markdown to a form with buttons
 
-## Usage
-You can use the convert handout script with various combinations of file conversions. Any unrecognized pairing will generate the following help menu:
+## First, convert the Google Doc handout to markdown format
+Follow [these steps](https://github.com/mangini/gdocs2md) to convert your google doc to markdown.
+
+Then look over the main content and fix any errors. See [this page](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatshe) for a markdown cheatsheet. You can also install a live preview plugin for your text editor of choice to see a pdf of the output.
+
+## Then, Convert to html
+Run
 ```
-usage: ./convert-handout --from [text|markdown] --to [markdown|html|foldable] file
-Specify the input format and output format with --from and --to
-These can also be -f and -t.
-
-This utility only goes "one direction". That is, it goes from text towards more complicated
-html. This journey involves text --> markdown --> html --> foldable html.
-
-Thus these are valid:
---from markdown --to html
---from text --to foldable
-
-While these are not:
---from html --to markdown
---from markdown --to text
+pandoc --from markdown_strict --to html file.md
 ```
+replacing `file.md` with your file name.
+
+## Finally, make it foldable
+Run
+```
+./convert-handout file.html
+```
+using the included script. This should make the page foldable. Then email to the head TAs so it can be included in the website.

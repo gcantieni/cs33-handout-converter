@@ -19,3 +19,5 @@ Run
 ./convert-handout file.html
 ```
 using the included script. This should make the page foldable. Then email to the head TAs so it can be included in the website.
+
+TODO: Do these both in the same step

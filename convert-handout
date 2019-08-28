@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# note requires pandoc and sed
+# note: requires pandoc and sed
 
 function usage {
     cat <<EOF
 usage: ./convert-handout file.md
+First convert your google doc to markdown using a script
 EOF
 }
 
@@ -19,10 +20,14 @@ function add-foldable-sections {
     echo -e "${doc:7}\n</div>"
 }
 
+function md-to-html {
+    pandoc --from markdown_strict --to html $1
+}
+
 # Check usage
 if [[ ! -n "$1" ]]; then
     usage
     exit
 fi
 
-add-foldable-sections $1
+md-to-html $1 | add-foldable-sections
